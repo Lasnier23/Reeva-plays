@@ -6,6 +6,13 @@
 <title>For Reeva ❤️</title>
 
 <style>
+* {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -13,16 +20,21 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100dvh;
+  width: 100dvw;
   overflow: hidden;
   touch-action: manipulation;
 }
 
 .screen {
   text-align: center;
-  padding: 20px;
-  width: 95%;
-  max-width: 480px;
+  padding: 10px;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h1, p {
@@ -33,6 +45,8 @@ canvas {
   background: #111;
   border-radius: 12px;
   margin-top: 10px;
+  width: 95vw;
+  height: 72dvh;
 }
 
 .btn {
@@ -81,7 +95,7 @@ canvas {
 
 <div class="screen hidden" id="game">
 <h1>Make 1 Full Row 💕</h1>
-<canvas id="board" width="200" height="400"></canvas>
+<canvas id="board"></canvas>
 
 <div>
 <button class="arrow-btn" onclick="move(-1)">⬅️</button>
@@ -241,6 +255,12 @@ window.addEventListener('keydown',e=>{
 });
 
 function startGame(){
+
+  // Request fullscreen for mobile immersion
+  const elem = document.documentElement;
+  if (elem.requestFullscreen) elem.requestFullscreen();
+  else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+  else if (elem.msRequestFullscreen) elem.msRequestFullscreen();
   document.getElementById('start').classList.add('hidden');
   document.getElementById('game').classList.remove('hidden');
   document.getElementById('bgMusic').play();
